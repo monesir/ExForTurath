@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Turath Redesign",
+  "version": "1.0",
+  "description": "إضافة لتعديل تصميم موقع تراث (app.turath.io)",
+  "content_scripts": [
+    {
+      "matches": ["*://app.turath.io/*"],
+      "css": ["styles/content.css"],
+      "js": ["scripts/content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

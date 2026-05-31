@@ -1,0 +1,225 @@
+/* 
+  هنا سيتم كتابة أكواد الـ CSS لتعديل تصميم موقع تراث.
+  يتم حقن هذا الملف تلقائياً عند فتح app.turath.io
+*/
+
+/* خلفية الموقع - زخارف إسلامية بخطوط خفيفة */
+body, html {
+  background-color: #0F2424 !important; /* لون الخلفية المطلوب */
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-opacity='0.02'%3E%3Cpath d='M40,0 L50,30 L80,40 L50,50 L40,80 L30,50 L0,40 L30,30 Z'/%3E%3Cpath d='M0,0 L30,10 L40,0 M80,0 L50,10 L40,0 M80,80 L50,70 L40,80 M0,80 L30,70 L40,80'/%3E%3C/g%3E%3C/svg%3E") !important;
+  background-attachment: fixed !important;
+}
+
+/* لمنع تداخل لون الخلفية الأصلي للموقع الذي قد يغطي الزخرفة ولإصلاح الألوان */
+:root {
+  --bg-color: transparent !important;
+  --dark-mode-bg-color: transparent !important; 
+  
+  /* تغيير لون النص الأساسي في الوضع الليلي ليكون اللون الكريمي التراثي */
+  --dark-mode-text-color: #F0E6D2 !important;
+  
+  /* جعل الطبقات في الموقع كله شفافة تماماً لعدم إزعاج المستخدم */
+  --dark-mode-off-white: transparent !important; 
+  --dark-mode-hover-bg: transparent !important; 
+  --dark-mode-input-bg: rgba(255, 255, 255, 0.05) !important; 
+  
+  --off-white: transparent !important; 
+}
+
+/* إزالة جميع الخلفيات الرمادية المزعجة (الخاصة بـ Tailwind) من الأزرار والبطاقات */
+[class*="bg-[#242426]"],
+[class*="dark:bg-[#242426]"],
+[class*="bg-gray-700"],
+[class*="bg-gray-800"],
+[class*="bg-gray-900"],
+[class*="dark:bg-gray-"],
+[class*="dark:bg-[#1a1a1a]"] {
+  background-color: transparent !important;
+}
+
+/* إصلاح خلفية القوائم المنسدلة (Dropdowns & Popovers) لتكون غير شفافة ومقروءة */
+.popover, 
+.popover-menu, 
+.modal-container, 
+.tooltip-inner,
+.tools-menu,
+[role="dialog"], 
+[role="menu"],
+[role="listbox"],
+/* استهداف قوي لأي عنصر عائم (Absolute) قد يكون هو القائمة المنسدلة، خاصة في الشريط السفلي */
+[class*="absolute"][class*="z-50"],
+[class*="absolute"][class*="z-40"],
+[class*="absolute"][class*="shadow"],
+[class*="fixed"] [class*="absolute"],
+/* استهداف القوائم الأصلية للمتصفح إذا كانت مستخدمة */
+select, 
+select option,
+datalist {
+  background-color: #0A1A1A !important; /* لون أخضر داكن جداً أو أسود للقوائم */
+  border: 1px solid rgba(240, 230, 210, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
+}
+
+/* تلوين تأثير التمرير (Hover) داخل القوائم ليتناسب مع الثيم */
+.popover :is(button:hover, a:hover, label:hover, li:hover),
+.popover-menu :is(button:hover, a:hover, label:hover, li:hover),
+[role="menu"] :is(button:hover, a:hover, label:hover, li:hover),
+[class*="absolute"] :is(button:hover, a:hover, label:hover, li:hover),
+select option:hover {
+  background-color: rgba(240, 230, 210, 0.1) !important;
+}
+
+/* تغيير خلفية زر السهم وجميع أزرار الأيقونات لتكون شفافة بالكامل (بدون أي لون رمادي أو داكن) */
+button:has(svg),
+.tools-menu button,
+button.expand-btn,
+.expand-btn.btn {
+  background-color: transparent !important; /* إزالة الخلفية تماماً */
+  background: transparent !important; /* ضمان إضافي لقتل الخلفية الرمادية */
+  color: #B59954 !important; /* لون السهم ذهبي */
+  border: 1px solid rgba(240, 230, 210, 0.1) !important; /* إطار خفيف جداً */
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+button:has(svg):hover,
+.tools-menu button:hover,
+button.expand-btn:hover {
+  background-color: rgba(240, 230, 210, 0.05) !important; /* تأثير شفاف خفيف عند التمرير فقط */
+}
+
+/* تخصيص الفهرس (القائمة الجانبية) فقط ليحتوي على الطبقة الشفافة للتمييز */
+#toc, .toc-wrapper, .toc-tabs {
+  --dark-mode-off-white: rgba(255, 255, 255, 0.1) !important; /* القسم النشط */
+  --dark-mode-hover-bg: rgba(255, 255, 255, 0.05) !important; /* عند تمرير الماوس */
+  --off-white: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* إزالة الخلفية (الطبقة) من اسم الكتاب واسم المؤلف في الترويسة العلوية */
+h3.flex button, h3.flex {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* تخصيص شكل شريط التمرير (Scrollbar) ليتناسب مع التصميم الذهبي للسكرول السفلي */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(240, 230, 210, 0.1) !important; /* لون ذهبي شفاف خفيف يطابق المسار السفلي */
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B59954 !important; /* لون المقبض ذهبي صلب */
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4b86a !important; /* لون أفتح عند تمرير الماوس */
+}
+
+/* لمتصفح فايرفوكس */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B59954 rgba(240, 230, 210, 0.1);
+}
+
+/* تغيير لون نصوص المؤلف والتصنيف (الأسماء الثانوية) في الصفحة الرئيسية بغض النظر عن الكلاس المستخدم */
+/* باستخدام النجمة (*) نستهدف أي كلاس يحتوي على ألوان فرعية (رمادي، صخري، إلخ) في Tailwind CSS */
+[class*="text-gray-"], 
+[class*="text-slate-"], 
+[class*="text-zinc-"], 
+[class*="text-neutral-"], 
+[class*="text-stone-"],
+a p, 
+a span.text-sm {
+  color: #F0E6D2 !important;
+}
+
+/* لضمان عدم تغيير لون عنوان الكتاب الرئيسي (الذي يكون عادة داخل h2 أو h3) */
+h2, h3, h2 *, h3 *, [class*="text-lg"], [class*="text-xl"] {
+  color: #ffffff !important; /* لون العنوان الأساسي أبيض ساطع */
+}
+
+/* إضافة تأثير "تغبيش زجاجي" خلف صفحات الكتاب لتسهيل القراءة وتوضيح النص فوق الزخارف */
+.page {
+  background-color: rgba(15, 36, 36, 0.8) !important; /* لون خلفية داكن شبه شفاف (80%) */
+  backdrop-filter: blur(12px) !important; /* تأثير الضبابية (التغبيش) */
+  -webkit-backdrop-filter: blur(12px) !important; /* لدعم متصفحات سفاري */
+  border-radius: 12px !important; /* حواف دائرية ناعمة للصفحة */
+  padding: 25px 20px !important; /* مساحة داخلية مريحة للنص */
+  margin-top: 15px !important;
+  margin-bottom: 15px !important; /* فصل الصفحات عن بعضها */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important; /* ظل عميق لإبراز الصفحة كالورقة العائمة */
+  border: 1px solid rgba(255, 255, 255, 0.04) !important; /* إطار زجاجي خفيف جداً */
+  transition: color 0.2s !important;
+  box-shadow: none !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important; /* ظل خفيف للنص ليبرز فوق الزخرفة بدلاً من وضع خلفية له */
+}
+
+
+/* تنسيق شريط التنقل السفلي (Range Slider) للكتب ليتناسب مع الثيم الذهبي/التراثي */
+.range-wrapper {
+  background: transparent !important;
+}
+
+.range-wrapper input[type="range"] {
+  -webkit-appearance: none !important;
+  background: transparent !important;
+  width: 100%;
+}
+
+.range-wrapper input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: rgba(240, 230, 210, 0.15) !important; /* مسار بلون ذهبي باهت */
+  border-radius: 6px;
+  border: 1px solid rgba(240, 230, 210, 0.05);
+}
+
+.range-wrapper input[type="range"]::-webkit-slider-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #B59954 !important; /* الدائرة بلون ذهبي/نحاسي */
+  cursor: pointer;
+  -webkit-appearance: none !important;
+  margin-top: -6px; /* ضبط المحاذاة */
+  box-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
+  transition: transform 0.2s ease;
+}
+
+.range-wrapper input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #d4b86a !important; /* لون أفتح قليلاً عند التمرير */
+}
+
+/* دعم لمتصفح فايرفوكس */
+.range-wrapper input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: rgba(240, 230, 210, 0.15) !important;
+  border-radius: 6px;
+}
+
+.range-wrapper input[type="range"]::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #B59954 !important;
+  cursor: pointer;
+  border: none !important;
+  box-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
+}
+
+.range-wrapper input[type="range"]:focus {
+  outline: none !important;
+}
+
+
